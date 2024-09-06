@@ -142,7 +142,7 @@ public class OrderTest {
         form.incorrectCardNumberVisible();
     }
 
-    //номер карты, состоящий из 17 цифр
+    //номер карты,состоящий из 17 цифр
     @Test
     public void shouldCardNumberOfSeventeenDigits() {
         var orderpage = new OrderPage();
