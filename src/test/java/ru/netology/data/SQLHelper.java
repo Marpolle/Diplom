@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
+import static java.lang.Thread.sleep;
+
 public class SQLHelper {
     private static final QueryRunner runner = new QueryRunner();
 
@@ -20,36 +22,38 @@ public class SQLHelper {
 
     @SneakyThrows
     public static void clearPaymentTable() {
-        val deletePaymentEntity = "DELETE FROM payment_entity";
-        try (val conn = getConn()) {
+        var deletePaymentEntity = "DELETE FROM payment_entity";
+        try (var conn = getConn()) {
             runner.update(conn, deletePaymentEntity);
         }
     }
 
     @SneakyThrows
     public static void clearCreditTable() {
-        val deleteCreditEntity = "DELETE FROM credit_request_entity";
-        try (val conn = getConn()) {
+        var deleteCreditEntity = "DELETE FROM credit_request_entity";
+        try (var conn = getConn()) {
             runner.update(conn, deleteCreditEntity);
         }
     }
 
     @SneakyThrows
     public static String getPaymentStatus() {
-        val statusSQL = "SELECT status FROM payment_entity LIMIT 1";
+        sleep(500);
+        var statusSQL = "SELECT status FROM payment_entity LIMIT 1";
         return getStatus(statusSQL);
     }
 
     @SneakyThrows
     public static String getCreditRequestStatus() {
+     sleep(500);
         String query = "SELECT status FROM credit_request_entity LIMIT 1";
         return getStatus(query);
     }
 
     @SneakyThrows
     private static String getStatus(String query) {
-        val runner = new QueryRunner();
-        try (val conn = getConn()) {
+        var runner = new QueryRunner();
+        try (var conn = getConn()) {
             String status = runner.query(conn, query, new ScalarHandler<String>());
             return status;
         }
