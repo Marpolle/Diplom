@@ -26,7 +26,8 @@ public class PaymentTest {
 
     @BeforeEach
     public void setUp() {
-        open("http://localhost:8080");
+        String baseUrl = System.getProperty("baseUrl", "http://localhost:8080");
+        open(baseUrl);
         SQLHelper.clearPaymentTable();
         SQLHelper.clearCreditTable();
     }

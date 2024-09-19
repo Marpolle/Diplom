@@ -52,14 +52,15 @@ public class PaymentPage {
 
     public void paymentApproved() {
         $(".notification_status_ok")
-                .shouldBe(Condition.visible, Duration.ofSeconds(35))
+                .shouldBe(Condition.visible, Duration.ofSeconds(15))
                 .$(byCssSelector(".notification__content"))
                 .shouldHave(text("Операция одобрена Банком."));
     }
 
     public void paymentDeclined() {
-        $(".notification_status_error").shouldBe(Condition.visible, Duration.ofSeconds(25));
-    }
+        $(".notification_status_error").shouldBe(Condition.visible, Duration.ofSeconds(15));
+        $(".notification_status_error").shouldHave(Condition.text("Банк отказал в проведении операции"));
+        }
 
     public void incorrectCardNumberVisible() {
         incorrectCardNumber

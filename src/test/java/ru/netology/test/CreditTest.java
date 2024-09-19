@@ -8,11 +8,15 @@ import ru.netology.data.SQLHelper;
 import ru.netology.page.CreditPage;
 import ru.netology.page.MainPage;
 
+import java.net.URL;
+
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.netology.data.DataHelper.*;
 
 public class CreditTest {
+    String url = System.getProperty("sut.url");
+    private CreditPage buy;
     @BeforeAll
     static void setUpAll() {
         SelenideLogger.addListener("allure", new AllureSelenide());
@@ -25,7 +29,8 @@ public class CreditTest {
 
     @BeforeEach
     public void setUp() {
-        open("http://localhost:8080");
+        String baseUrl = System.getProperty("baseUrl", "http://localhost:8080");
+        open(baseUrl);
         SQLHelper.clearPaymentTable();
         SQLHelper.clearCreditTable();
     }

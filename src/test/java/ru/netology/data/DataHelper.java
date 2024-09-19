@@ -26,8 +26,8 @@ public class DataHelper {
         return format("%02d", localDate.getMonthValue());
     }
 
-    public static String getValidYear() {
-        return LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy"));
+    public static String getValidYear(int yearOffset) {
+        return LocalDate.now().plusYears(yearOffset).format(DateTimeFormatter.ofPattern("yy"));
     }
 
     public static String getValidHolder() {
@@ -167,12 +167,11 @@ public class DataHelper {
 
     //Заполнение поля значением прошедшего года
     public static CardInfo getLastYear() {
-        return new CardInfo(getApprovedCardNumber(), getValidMonth(), "22", getValidHolder(), getValidCVCCVV());
+        return new CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(-1), getValidHolder(), getValidCVCCVV());
     }
 
-    //Заполнение поля значением, на 25 лет превышающего текущий год
     public static CardInfo getYear25YearsMore() {
-        return new CardInfo(getApprovedCardNumber(), getValidMonth(), "49", getValidHolder(), getValidCVCCVV());
+        return new CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(25), getValidHolder(), getValidCVCCVV());
     }
 
     //Заполнение поля значением из 1 цифры

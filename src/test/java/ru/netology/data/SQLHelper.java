@@ -17,21 +17,22 @@ public class SQLHelper {
     }
 
     private static Connection getConn() throws SQLException {
-        return DriverManager.getConnection(System.getProperty("db.url"), "app", "pass");
+        return DriverManager.getConnection(System.getProperty("db.url"), System.getProperty("db.username"), System.getProperty("db.password"));
     }
 
     @SneakyThrows
     public static void clearPaymentTable() {
         var deletePaymentEntity = "DELETE FROM payment_entity";
-        try (var conn = getConn()) {
+        var conn = getConn(); {
             runner.update(conn, deletePaymentEntity);
-        }
+
+    }
     }
 
     @SneakyThrows
     public static void clearCreditTable() {
         var deleteCreditEntity = "DELETE FROM credit_request_entity";
-        try (var conn = getConn()) {
+        var conn = getConn(); {
             runner.update(conn, deleteCreditEntity);
         }
     }
@@ -53,9 +54,8 @@ public class SQLHelper {
     @SneakyThrows
     private static String getStatus(String query) {
         var runner = new QueryRunner();
-        try (var conn = getConn()) {
+        var conn = getConn();
             String status = runner.query(conn, query, new ScalarHandler<String>());
             return status;
         }
     }
-}
