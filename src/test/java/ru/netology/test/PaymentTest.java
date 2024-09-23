@@ -34,7 +34,7 @@ public class PaymentTest {
     @Test
     @DisplayName("Should approved card payment")
     void shouldCardPaymentApproved() {
-        var cardinfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getValidHolder(), getValidCVCCVV());
+        var cardinfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(3), getValidHolder(), getValidCVCCVV());
         var mainpage = new MainPage();
         mainpage.buyByCard();
         var form = new PaymentPage();
@@ -46,7 +46,7 @@ public class PaymentTest {
     @Test
     @DisplayName("Should approved card payment by credit")
     void shouldCreditPaymentApproved() {
-        var cardinfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getValidHolder(), getValidCVCCVV());
+        var cardinfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(3), getValidHolder(), getValidCVCCVV());
         var mainpage = new MainPage();
         mainpage.buyByCreditCard();
         var form = new CreditPage();
@@ -58,7 +58,7 @@ public class PaymentTest {
     @Test
     @DisplayName("Should declined payment")
     void shouldCardPaymentDeclined() {
-        var cardinfo = new DataHelper.CardInfo(getDeclinedCardNumber(), getValidMonth(), getValidYear(), getValidHolder(), getValidCVCCVV());
+        var cardinfo = new DataHelper.CardInfo(getDeclinedCardNumber(), getValidMonth(), getValidYear(3), getValidHolder(), getValidCVCCVV());
         var mainpage = new MainPage();
         mainpage.buyByCard();
         var form = new PaymentPage();
@@ -357,55 +357,18 @@ public class PaymentTest {
         form.incorrectYearVisible("Неверный формат");
     }
 
-    //год с использованием специальных символов
+    // Заполнение поля «Год» нечисловым  значением:
     @Test
-    public void shouldYearWithSpecialSymbols() {
+    @DisplayName ("Should display an error if  year is non numeric value")
+    public void shouldYearNonNumericValueByCredit() {
         var mainpage = new MainPage();
         mainpage.buyByCard();
-        var form = new PaymentPage();
-        form.completedForm(DataHelper.getYearWithSpecialSymbols());
+        var form = mainpage.buyByCreditCard();
+        form.completedForm(DataHelper.getYearNonNumericValue());
         form.incorrectYearVisible("Неверный формат");
     }
 
-    //год кириллицей
-    @Test
-    public void shouldYearWithCyrillic() {
-        var mainpage = new MainPage();
-        mainpage.buyByCard();
-        var form = new PaymentPage();
-        form.completedForm(DataHelper.getYearWithCyrillic());
-        form.incorrectYearVisible("Неверный формат");
-    }
 
-    //год латиницей
-    @Test
-    public void shouldYearWithLatin() {
-        var mainpage = new MainPage();
-        mainpage.buyByCard();
-        var form = new PaymentPage();
-        form.completedForm(DataHelper.getYearWithLatin());
-        form.incorrectYearVisible("Неверный формат");
-    }
-
-    //год арабской вязью
-    @Test
-    public void shouldYearWithArabicLigature() {
-        var mainpage = new MainPage();
-        mainpage.buyByCard();
-        var form = new PaymentPage();
-        form.completedForm(DataHelper.getYearWithArabicLigature());
-        form.incorrectYearVisible("Неверный формат");
-    }
-
-    //год иероглифами
-    @Test
-    public void shouldYearWithHieroglyphs() {
-        var mainpage = new MainPage();
-        mainpage.buyByCard();
-        var form = new PaymentPage();
-        form.completedForm(DataHelper.getYearWithHieroglyphs());
-        form.incorrectYearVisible("Неверный формат");
-    }
 
     // Поле Владелец:
 

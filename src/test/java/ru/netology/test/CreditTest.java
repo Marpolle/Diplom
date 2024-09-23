@@ -37,7 +37,7 @@ public class CreditTest {
     @Test
     @DisplayName("Should declined payment by credit")
     void shouldCreditPaymentDeclined() {
-        var cardinfo = new DataHelper.CardInfo(getDeclinedCardNumber(), getValidMonth(), getValidYear(), getValidHolder(), getValidCVCCVV());
+        var cardinfo = new DataHelper.CardInfo(getDeclinedCardNumber(), getValidMonth(), getValidYear(15), getValidHolder(), getValidCVCCVV());
         var mainpage = new MainPage();
         mainpage.buyByCreditCard();
         var form = new CreditPage();
@@ -336,53 +336,14 @@ public class CreditTest {
         form.incorrectYearVisible("Неверный формат");
     }
 
-    //год с использованием специальных символов
+    // Заполнение поля «Год» нечисловым  значением:
     @Test
-    public void shouldYearWithSpecialSymbolsByCredit() {
-        var mainpage= new MainPage();
-        mainpage.buyByCreditCard();
-        var form = new CreditPage();
-        form.completedForm(DataHelper.getYearWithSpecialSymbols());
-        form.incorrectYearVisible("Неверный формат");
-    }
-
-    //год кириллицей
-    @Test
-    public void shouldYearWithCyrillicByCredit() {
+    @DisplayName ("Should display an error if  year is non numeric value")
+    public void shouldYearNonNumericValueByCredit() {
         var mainpage = new MainPage();
         mainpage.buyByCreditCard();
-        var form = new CreditPage();
-        form.completedForm(DataHelper.getYearWithCyrillic());
-        form.incorrectYearVisible("Неверный формат");
-    }
-
-    //год латиницей
-    @Test
-    public void shouldYearWithLatinByCredit() {
-        var mainpage = new MainPage();
-        mainpage.buyByCreditCard();
-        var form = new CreditPage();
-        form.completedForm(DataHelper.getYearWithLatin());
-        form.incorrectYearVisible("Неверный формат");
-    }
-
-    //год арабский
-    @Test
-    public void shouldYearWithArabicLigatureByCredit() {
-        var mainpage = new MainPage();
-        mainpage.buyByCreditCard();
-        var form = new CreditPage();
-        form.completedForm(DataHelper.getYearWithArabicLigature());
-        form.incorrectYearVisible("Неверный формат");
-    }
-
-    //год иероглифами
-    @Test
-    public void shouldYearWithHieroglyphsByCredit() {
-        var mainpage = new MainPage();
-        mainpage.buyByCreditCard();
-        var form = new CreditPage();
-        form.completedForm(DataHelper.getYearWithHieroglyphs());
+        var form = mainpage.buyByCreditCard();
+        form.completedForm(DataHelper.getYearNonNumericValue());
         form.incorrectYearVisible("Неверный формат");
     }
 
