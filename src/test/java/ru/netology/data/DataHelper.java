@@ -207,12 +207,12 @@ public class DataHelper {
 
     //Заполнение поля значением из 60 букв
     public static CardInfo getHolderOfSixtyLetters() {
-        return new CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(3), "Mariiiiiiiiiiiiiiiiiiiiiiiiiiirrrrrrrrrrrrrrrrrrrriiiiiaaaaa Bond", getValidCVCCVV());
+        return new CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(3), "Mariiiiiiiiiiiiiiiiiiiiirrrrrrrrrrrrrriiiiiaaaaa Bond", getValidCVCCVV());
     }
 
     //Заполнение поля кирилицей
     public static CardInfo getHolderWithCyrillic() {
-        return new CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(3), "Мария Бонд", getValidCVCCVV());
+        return new CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(3), "Мария Полеж", getValidCVCCVV());
     }
 
     //Заполнение поля цифрами

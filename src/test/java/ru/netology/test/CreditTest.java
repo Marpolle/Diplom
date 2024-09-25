@@ -15,8 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.netology.data.DataHelper.*;
 
 public class CreditTest {
-    String url = System.getProperty("sut.url");
-    private CreditPage buy;
+   ;
     @BeforeAll
     static void setUpAll() {
         SelenideLogger.addListener("allure", new AllureSelenide());
