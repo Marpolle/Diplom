@@ -170,8 +170,8 @@ public class DataHelper {
         return new CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(-1), getValidHolder(), getValidCVCCVV());
     }
 
-    public static CardInfo getYear25YearsMore() {
-        return new CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(25), getValidHolder(), getValidCVCCVV());
+    public static CardInfo getYear35YearsMore() {
+        return new CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(35), getValidHolder(), getValidCVCCVV());
     }
 
     //Заполнение поля значением из 1 цифры

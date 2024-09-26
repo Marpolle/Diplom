@@ -319,11 +319,11 @@ public class PaymentTest {
 
     //год на 25 лет превышающий текущий
     @Test
-    public void shouldYear25YearsMore() {
+    public void shouldYear35YearsMore() {
         var mainpage = new MainPage();
         mainpage.buyByCard();
         var form = new PaymentPage();
-        form.completedForm(DataHelper.getYear25YearsMore());
+        form.completedForm(DataHelper.getYear35YearsMore());
         form.incorrectYearVisible("Неверно указан срок действия карты");
     }
 

@@ -36,7 +36,7 @@ public class CreditTest {
     @Test
     @DisplayName("Should declined payment by credit")
     void shouldCreditPaymentDeclined() {
-        var cardinfo = new DataHelper.CardInfo(getDeclinedCardNumber(), getValidMonth(), getValidYear(15), getValidHolder(), getValidCVCCVV());
+        var cardinfo = new DataHelper.CardInfo(getDeclinedCardNumber(), getValidMonth(), getValidYear(5), getValidHolder(), getValidCVCCVV());
         var mainpage = new MainPage();
         mainpage.buyByCreditCard();
         var form = new CreditPage();
@@ -173,8 +173,6 @@ public class CreditTest {
         form.incorrectCardNumberVisible();
     }
 
-
-
     //несуществующий месяц
     @Test
     public void shouldMonthIfNotExistByCredit() {
@@ -297,11 +295,11 @@ public class CreditTest {
 
     //год  превышающий текущий
     @Test
-    public void shouldYear25YearsMoreByCredit() {
+    public void shouldYear35YearsMoreByCredit() {
         var mainpage = new MainPage();
         mainpage.buyByCreditCard();
         var form = new CreditPage();
-        form.completedForm(DataHelper.getYear25YearsMore());
+        form.completedForm(DataHelper.getYear35YearsMore());
         form.incorrectYearVisible("Неверно указан срок действия карты");
     }
 
